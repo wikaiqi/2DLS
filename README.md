@@ -7,7 +7,7 @@ From microscopic view point, the particles in solids (crystals) are closely pack
 ![image](2DLS.png)
 
 ## Dataset
-The dataset includes (x, y) coordinates data obtained from molecular simulation. The training set are 10500 samples of hard discs model. In test set, 3600 samples of hard discs model and 6800 sets of of LJ potential model.
+The dataset includes (x, y) coordinates data obtained from molecular simulation. The training set are 10500 samples of hard discs model. In test set, 3600 samples of hard discs model and 6800 sets of of LJ potential model. When train the model, we used 5-fold CV.
 
 
 
@@ -27,3 +27,12 @@ ANN for solid-liquid classifier
 | -e EPOCHS, --epochs EPOCHS        |Epochs|
 | -m T_MODE, --t_mode T_MODE.       |test mode = 0/1: Exclude/Include coexistance phase in test set|
 
+## VGG-type convolutional neural network (Keras verion)
+usage: CNN_keras/LS2D_CNN.py [-h] [-d DROPRATE] [-lr LR_RATE] [-L2 L2_NROM] [-b BATCH]
+[-e EPOCHS] [-m T_MODE]
+
+Although the above full connect NN works well for our problem, I also run a convolutional neural network with VGG-type architecture. 
+
+## unsupervised learning -- Principal component analysis (Sk-learn)
+
+We found the first and second principle component play as a role of ordered parameter and the susceptibility at freezing point of the solid-liquid transition.
