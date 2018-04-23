@@ -14,16 +14,10 @@ usage: ANN_keras/LS2D_NN.py [-h] [-d DROPRATE] [-lr LR_RATE] [-L2 L2_NROM] [-b B
 ANN for solid-liquid classifier
 
 optional arguments:
-- -h, --help            show this help message and exit
-- -d DROPRATE, --droprate DROPRATE
-- Dropout rate
-- -lr LR_RATE, --lr_rate LR_RATE
-- Learning rate
-- -L2 L2_NROM, --L2_nrom L2_NROM
-- L2 nrom parameters for weights
-- -b BATCH, --batch BATCH
-- Batch size
-- -e EPOCHS, --epochs EPOCHS
-- Epochs
-- -m T_MODE, --t_mode T_MODE
-- test mode = 0/1: Exclude/Include test samples at packf [0.68-0.74] (coexistance phase)
+- -h, --help                        show this help message and exit
+- -d DROPRATE, --droprate DROPRATE  Dropout rate
+- -lr LR_RATE, --lr_rate LR_RATE    Learning rate
+- -L2 L2_NROM, --L2_nrom L2_NROM.   L2 nrom parameters for weights
+- -b BATCH, --batch BATCH           Batch size
+- -e EPOCHS, --epochs EPOCHS        Epochs
+- -m T_MODE, --t_mode T_MODE.       test mode = 0/1: Exclude/Include test samples at packf [0.68-0.74] (coexistance phase)
