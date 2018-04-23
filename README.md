@@ -27,6 +27,9 @@ ANN for solid-liquid classifier
 | -e EPOCHS, --epochs EPOCHS        |Epochs|
 | -m T_MODE, --t_mode T_MODE.       |test mode = 0/1: Exclude/Include coexistance phase in test set|
 
+## Neural network (Tensorflow version)
+The folder ANN_tf includes a tensorflow version of the neural network model. It's slight different with the Keras version. For example, I used AMSGrad in the keras version, because a recent paper [1] points out the AMSGrad is bettter due to Adam may not be able to converge for some case. 
+
 ## VGG-type convolutional neural network (Keras verion)
 usage: CNN_keras/LS2D_CNN.py [-h] [-d DROPRATE] [-lr LR_RATE] [-L2 L2_NROM] [-b BATCH]
 [-e EPOCHS] [-m T_MODE]
@@ -35,4 +38,8 @@ Although the above full connect NN works well for our problem, I also run a conv
 
 ## unsupervised learning -- Principal component analysis (Sk-learn)
 
-We found the first and second principle component play as a role of ordered parameter and the susceptibility at freezing point of the solid-liquid transition.
+We found the first and second principle component play as a role of ordered parameter and the susceptibility at freezing point of the solid-liquid transition. 
+
+## Reference
+[1][On the Convergence of Adam and Beyond,Sashank J. Reddi and Satyen Kale and Sanjiv Kumar, ICLR, 2018.] (https://openreview.net/forum?id=ryQu7f-RZ])
+}
