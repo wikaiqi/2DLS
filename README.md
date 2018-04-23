@@ -41,5 +41,4 @@ Although the above full connect NN works well for our problem, I also run a conv
 We found the first and second principle component play as a role of ordered parameter and the susceptibility at freezing point of the solid-liquid transition. 
 
 ## Reference
-[1][On the Convergence of Adam and Beyond,Sashank J. Reddi and Satyen Kale and Sanjiv Kumar, ICLR, 2018.] (https://openreview.net/forum?id=ryQu7f-RZ])
-}
+[1][On the Convergence of Adam and Beyond,Sashank J. Reddi and Satyen Kale and Sanjiv Kumar, ICLR, 2018.] (https://openreview.net/forum?id=ryQu7f-RZ)
