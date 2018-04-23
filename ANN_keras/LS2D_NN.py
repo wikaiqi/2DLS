@@ -1,14 +1,21 @@
-# coding: utf-8
-# Classify Solid and Liquid phases with Neural Network
+#--------------------------------------------------------------
+# 2DLS: Classify Solid and Liquid phases with Neural Network
 # 
 # Author: Weikai Qi
 # Email : wikaiqi@gmail.com
 # 
-# In this project, I will train a neural network to regonize solid 
-# and liquid phases in two-dimension from configurations generating in MD simulation. 
+# I train a neural network to classify solid and liquid phases 
+# software: Tensorflow + keras
+#----------------------------------------------------------------
 
-# In[1]:
-import argparse
+#load libaraies
+import numpy  as np
+import pandas as pd
+from loaddata import load_HDdata, load_LJdata
+from keraANN  import run_ANN
+import time, argparse
+np.random.seed(1)
+
 # Setting parameters
 parser = argparse.ArgumentParser(description='ANN for solid-liquid classifier')
 parser.add_argument('-d', '--droprate', type=float, default=0.5,   help='Dropout rate')
@@ -17,24 +24,16 @@ parser.add_argument('-L2', '--L2_nrom', type=float, default=0.05,  help='L2 nrom
 parser.add_argument('-b',  '--batch',   type=int,   default=128,   help='Batch size')
 parser.add_argument('-e',  '--epochs',  type=int,   default=50,    help='Epochs')
 parser.add_argument('-m',  '--t_mode',  type=int,   default=0,     help='test mode = 0/1: Exclude/Include test samples at packf [0.68-0.74] (coexistance phase) ')
+
 arg        = parser.parse_args()
-
-import numpy      as np
-np.random.seed(1)
-from loaddata import load_HDdata, load_LJdata
-from keraANN  import run_ANN
-import pandas as pd
-import time
-
-# In[2]:
-start = time.clock()
-
 droprate   = arg.droprate  # dropout rate
 L2         = arg.L2_nrom   # L2 nrom parameters for weights
 lr_rate    = arg.lr_rate   # learning rate
 batch_size = arg.batch     # batch szie
 epochs     = arg.epochs    # epochs
 t_mode     = arg.t_mode    # test sample mode
+
+start = time.clock()
 
 yesno= lambda x: 'yes' if x else 'no'
 
@@ -48,18 +47,26 @@ print('Include coexistane        : {}'.format(yesno(t_mode)))
 print('-------------------------------------------------------')
 
 #load data
-HD_train_solid_path  = '../data/HardDiskTrainsetSolid.csv'
-HD_train_liquid_path = '../data/HardDiskTrainsetLiquid.csv'
-HD_test_path         = '../data/HardDiskTestset.csv'
-LJ_test_path_87      = '../data/LJ0873Testset.csv'
-LJ_test_path_83      = '../data/LJ0830Testset.csv'
-LJ_test_path_85      = '../data/LJ0850Testset.csv'
-LJ_test_path_89      = '../data/LJ0890Testset.csv'
+data_path='../../data/'
+HD_train_solid_path  = data_path + 'HardDiskTrainsetSolid.csv'
+HD_train_liquid_path = data_path + 'HardDiskTrainsetLiquid.csv'
+HD_test_path         = data_path + 'HardDiskTestset.csv'
 
-HD_train_x, HD_train_y, HD_test_x, HD_test_y, HD_test_packf, n_test_packf, size = load_HDdata(
-                                                                    HD_train_solid_path, HD_train_liquid_path, 
-                                                                    HD_test_path,
-                                                                    shuffle=1, verbose=1, mode=t_mode) 
+LJ_test_path_87      = data_path + 'LJ0873Testset.csv'
+LJ_test_path_83      = data_path + 'LJ0830Testset.csv'
+LJ_test_path_85      = data_path + 'LJ0850Testset.csv'
+LJ_test_path_89      = data_path + 'LJ0890Testset.csv'
+
+dataset = load_HDdata(HD_train_solid_path, HD_train_liquid_path,HD_test_path,
+                    shuffle=1, verbose=1, mode=t_mode)
+
+HD_train_x = dataset['HD_train_x']
+HD_train_y = dataset['HD_train_y']
+HD_test_x  = dataset['HD_test_x']
+HD_test_y  = dataset['HD_test_y']
+HD_test_packf = dataset['HD_test_packf']
+n_test_packf  = dataset['n_test_packf']
+size = dataset['size']
 
 LJ_test_x_87, LJ_test_y_87, LJ_test_T_87, n_test_T_87 = load_LJdata(LJ_test_path_87, verbose=1)
 LJ_test_x_83, LJ_test_y_83, LJ_test_T_83, n_test_T_83 = load_LJdata(LJ_test_path_83, verbose=1)

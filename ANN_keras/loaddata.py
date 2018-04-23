@@ -65,8 +65,17 @@ def load_HDdata(train_solid_file, train_liquid_file, test_file, shuffle=0, verbo
         print("HD_test_x data shape              : ", HD_test_x.shape)
         print("HD_test_y data shape              : ", HD_test_y.shape)
         print('-------------------------------------------------------')
-    
-    return HD_train_x, HD_train_y, HD_test_x, HD_test_y, HD_test_packf, n_test_packf, size
+
+    dataset = {'HD_train_x': HD_train_x,
+               'HD_train_y': HD_train_y,
+               'HD_test_x' : HD_test_x,
+               'HD_test_y' : HD_test_y,
+               'HD_test_packf':HD_test_packf,
+               'n_test_packf':n_test_packf,
+               'size': size
+               }
+
+    return dataset
 
 
 def load_LJdata(file, verbose=1):
