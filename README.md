@@ -15,7 +15,7 @@ ANN for solid-liquid classifier
 
 |optional arguments                 | description                   |
 | --------------------------------- |-------------------------------|
-| -h, --help                        |show this help message and exit|
+| -h, --help                        |show help message and exit|
 | -d DROPRATE, --droprate DROPRATE  |Dropout rate|
 | -lr LR_RATE, --lr_rate LR_RATE    |Learning rate|
 | -L2 L2_NROM, --L2_nrom L2_NROM.   |L2 nrom parameters for weights|
